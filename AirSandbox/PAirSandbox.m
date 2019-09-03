@@ -274,7 +274,7 @@ typedef enum : NSUInteger {
 - (void)enableSwipe
 {
     UISwipeGestureRecognizer* swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeDetected:)];
-    swipeGesture.numberOfTouchesRequired = 1;
+    swipeGesture.numberOfTouchesRequired = 2;
     swipeGesture.direction = (UISwipeGestureRecognizerDirectionLeft);
     [[UIApplication sharedApplication].keyWindow addGestureRecognizer:swipeGesture];
 }
