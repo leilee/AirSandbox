@@ -104,6 +104,9 @@ typedef enum : NSUInteger {
 
     _items = @[];
     _rootPath = NSHomeDirectory();
+    
+    UILongPressGestureRecognizer* gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [_tableView addGestureRecognizer:gr];
 }
 
 - (void)viewWillLayoutSubviews
@@ -226,6 +229,26 @@ typedef enum : NSUInteger {
     }
 }
 
+#pragma mark - LongPress
+- (void)handleLongPress:(UILongPressGestureRecognizer*)gr
+{
+    CGPoint p = [gr locationInView:self.tableView];
+    NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:p];
+    if (indexPath == nil)
+    {
+        return;
+    }
+    
+    ASFileItem* item = [_items objectAtIndex:indexPath.row];
+    if (item.type == ASFileItemUp)
+    {
+        return;
+    }
+    
+    [self sharePath:item.path];
+}
+
+#pragma mark - Share
 - (void)sharePath:(NSString*)path
 {
     NSURL *url = [NSURL fileURLWithPath:path];
