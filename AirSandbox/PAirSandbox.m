@@ -49,7 +49,6 @@ typedef enum : NSUInteger {
         _lbName.font = [UIFont systemFontOfSize:13];
         _lbName.textAlignment = NSTextAlignmentLeft;
         _lbName.frame = CGRectMake(10, 30, cellWidth - 20, 15);
-        _lbName.textColor = [UIColor blackColor];
         [self addSubview:_lbName];
         
         UIView* line = [UIView new];
